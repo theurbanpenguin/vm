@@ -18,7 +18,7 @@ sudo dnf install -y  curl wget git vim nano tree bash-completion open-vm-tools p
 # Set up time synchronization
 sudo timedatectl set-timezone UTC
 sudo timedatectl set-ntp true
-sudo systemctl enable --now vmtools
+sudo systemctl enable --now vmtoolsd
 
 
 sudo dnf autoremove -y
