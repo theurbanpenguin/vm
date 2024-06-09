@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Create SSH directory and set permissions
+mkdir -m 700 /home/vagrant/.ssh
+curl -L https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub > /home/vagrant/.ssh/authorized_keys
+chmod 600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant:vagrant /home/vagrant/.ssh
+
+# Allow passwordless sudo for vagrant user
+echo 'vagrant ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/vagrant
+sudo chmod 0440 /etc/sudoers.d/vagrant
+
+# Update and install necessary packages
+sudo dnf update -y
+sudo dnf install -y epel-release
+sudo dnf install -y kernel-devel kernel-headers gcc make perl curl wget git vim nano tree bash-completion
+
+# Set up time synchronization
+sudo timedatectl set-ntp true
+
+
+sudo dnf autoremove -y
+sudo dnf clean all
+sudo rm -rf /var/cache/dnf
+
+# Clear logs
+sudo find /var/log -type f -exec truncate -s 0 {} \;
+
+# Zero out the free space to save space in the final image
+sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm -f /EMPTY
+
+# Clear bash history
+history -c
+history -w
+
+# Shutdown the system
+sudo poweroff
