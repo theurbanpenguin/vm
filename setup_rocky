@@ -37,6 +37,17 @@ if [ "$virtualization" = "oracle" ]; then
                     make \
                     perl \
                     dkms
+    echo "Please insert Guest Additions CD 'c' to continue..."
+    read input
+
+    # Loop until the user enters 'c'
+    while [[ "$input" != "c" ]]; do
+        echo "Incorrect input. Please enter 'c' to continue..."
+        read input
+    done
+    sudo mount /dev/cdrom /mnt
+    sudo /mnt/VBoxLinuxAdditions.run
+    sudo eject /mnt
 elif [ "$virtualization" = "vmware" ]; then
     echo "Virtualization is VMWare"
     sudo dnf install -y open-vm-tools
