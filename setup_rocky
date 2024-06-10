@@ -15,8 +15,32 @@ sudo sed -i '/#set bell-style none/s/^#//' /etc/inputrc
 
 # Update and install necessary packages
 sudo dnf update -y
-sudo dnf install -y epel-release
-sudo dnf install -y  curl wget git vim nano tree bash-completion open-vm-tools python3 python3-pip
+sudo dnf install -y epel-release \
+                    curl \
+                    wget \
+                    git \
+                    vim \
+                    nano \
+                    tree \
+                    bash-completion \
+                    open-vm-tools \
+                    python3 \
+                    python3-pip \
+                    kernel-devel \
+                    kernel-headers \
+                    gcc \
+                    make \
+                    perl \
+                    dkms
+virtualization=$(hostnamectl | awk '/Virtualization:/ {print $2}')
+
+# Check if the virtualization is Oracle
+if [ "$virtualization" = "oracle" ]; then
+    # Run your code here
+    echo "Virtualization is Oracle"
+else
+    echo "Virtualization is not Oracle"
+fi
 
 # Set up time synchronization
 sudo timedatectl set-timezone UTC
