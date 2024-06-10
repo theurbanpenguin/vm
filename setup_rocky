@@ -10,10 +10,13 @@ chown -R vagrant:vagrant /home/vagrant/.ssh
 echo 'vagrant ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/vagrant
 sudo chmod 0440 /etc/sudoers.d/vagrant
 
+# uncomment the bell to ensure no bell on tab completion
+sudo sed -i '/#set bell-style none/s/^#//' /etc/inputrc
+
 # Update and install necessary packages
 sudo dnf update -y
 sudo dnf install -y epel-release
-sudo dnf install -y  curl wget git vim nano tree bash-completion open-vm-tools python3
+sudo dnf install -y  curl wget git vim nano tree bash-completion open-vm-tools python3 python3-pip
 
 # Set up time synchronization
 sudo timedatectl set-timezone UTC
