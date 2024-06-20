@@ -27,6 +27,8 @@ build {
         "sudo apt-get upgrade -y ",
         "sudo apt-get clean",
         "sudo apt-get autoremove -y",
+        "history -c",
+        "history -w"
       ]
   }
 
