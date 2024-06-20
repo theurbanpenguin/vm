@@ -11,7 +11,7 @@ echo 'vagrant ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/vagrant
 sudo chmod 0440 /etc/sudoers.d/vagrant
 
 # uncomment the bell to ensure no bell on tab completion
-sudo sed -i '/#set bell-style none/s/^#//' /etc/inputrc
+sudo sed -Ei '/#\s?set bell-style none/s/^#\s?//' /etc/inputrc
 
 # Update and install necessary packages
 sudo apt update -y

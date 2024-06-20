@@ -21,7 +21,6 @@ source "vmware-vmx" "vmware" {
 
 build {
   sources = ["source.vmware-vmx.vmware"]
-
   provisioner "shell" {
    inline = [
         "sudo apt-get update",
