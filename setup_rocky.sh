@@ -75,5 +75,6 @@ sudo rm -f /EMPTY
 history -c
 history -w
 
+rm -rf ~/vm
 # Shutdown the system
 #sudo poweroff

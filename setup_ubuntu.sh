@@ -46,7 +46,7 @@ if [ "$virtualization" = "oracle" ]; then
 elif [ "$virtualization" = "vmware" ]; then
     echo "Virtualization is VMWare"
     sudo apt install -y open-vm-tools
-    sudo systemctl enable --now vmtoolsd
+    sudo systemctl enable --now open-vm-tools
 fi
 
 # Set up time synchronization
@@ -66,3 +66,5 @@ sudo rm -f /EMPTY
 # Clear bash history
 history -c
 history -w
+
+rm -rf ~/vm
