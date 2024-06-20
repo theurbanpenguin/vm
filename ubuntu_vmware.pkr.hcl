@@ -23,7 +23,7 @@ build {
   sources = ["source.vmware-vmx.vmware"]
 
   provisioner "shell" {
-   inline: [
+   inline = [
         "sudo apt-get update",
         "sudo apt-get upgrade -y ",
         "sudo apt-get clean",
